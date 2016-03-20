@@ -16,3 +16,6 @@
         (println (.getName x))
         (read-and-write (str file "/" (.getName x))))
       )))
+
+(defn insert-tags [father son]
+  ())
