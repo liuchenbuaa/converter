@@ -4,13 +4,6 @@
   (:import [java.io File])
   (:require [converter.db :as db]))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (let [filename (first args)]
-    (read-and-write filename 0))
-  (println "Hello, World!"))
-
 (defn insert-tag [name]
   (db/insert (str "insert into tag(name,status) values ('" name "',1)")))
 
@@ -37,3 +30,10 @@
             (read-and-write (str file "/" (.getName x)) son)
             )
           )))))
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (let [filename (first args)]
+    (read-and-write filename 0))
+  (println "done!"))
