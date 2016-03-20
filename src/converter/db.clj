@@ -6,7 +6,7 @@
   []
   (let [cpds (doto (ComboPooledDataSource.)
                (.setDriverClass nil)
-               (.setJdbcUrl "jdbc:mysql://127.0.0.1/test123?characterEncoding=utf8")
+               (.setJdbcUrl "jdbc:mysql://127.0.0.1/test123?characterEncoding=UTF-8")
                (.setUser "demo")
                (.setPassword "demo")
                ;; expire excess connections after 30 minutes of inactivity:
@@ -20,5 +20,9 @@
 (defn query [query]
   (jdbc/query @db-pool query))
 
-(defn test []
-  (query ["select * from user"]))
+(defn execute [query]
+  (jdbc/execute! @db-pool [query]))
+
+(defn insert [query]
+  (let [{r :generated_key} (jdbc/db-do-prepared-return-keys @db-pool query nil)]
+    r))
