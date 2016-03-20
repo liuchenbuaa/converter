@@ -7,6 +7,8 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+  (let [filename (first args)]
+    (read-and-write filename 0))
   (println "Hello, World!"))
 
 (defn insert-tag [name]
